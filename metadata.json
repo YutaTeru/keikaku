@@ -1,0 +1,6 @@
+{
+  "name": "TG 学習処方箋ビルダー",
+  "description": "高校生の指導面談で使える学習計画注文表およびAI計画生成プロンプトを作成するWebアプリケーション",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
