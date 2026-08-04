@@ -10,6 +10,7 @@ import {
   Upload,
   CheckCircle2,
   Settings,
+  Calendar,
 } from 'lucide-react';
 import { PrescriptionPlan } from '../types';
 import { YAMAGATA_SAMPLE_PLAN } from '../data/sampleData';
@@ -162,14 +163,14 @@ export const Header: React.FC<HeaderProps> = ({
           <RotateCcw className="w-3.5 h-3.5" />
         </button>
 
-        {/* Weekly Temporary Plan Gear Settings Button */}
+        {/* Weekly Temporary Plan Settings Button */}
         <button
           onClick={onOpenWeeklyTempModal}
-          className="bg-sky-600 hover:bg-sky-500 text-white text-xs px-3 py-1.5 rounded-lg font-extrabold flex items-center gap-1.5 transition shadow-sm border border-sky-500 hover:border-sky-400"
-          title="週間簡易版（テンポラリ）計画の設定と印刷"
+          className="bg-sky-600 hover:bg-sky-500 text-white text-xs px-3 py-1.5 rounded-lg font-extrabold flex items-center gap-1.5 transition shadow-sm border border-sky-500 hover:border-sky-400 animate-pulse"
+          title="週間の暫定・学習計画・表作成画面を表示"
         >
-          <Settings className="w-3.5 h-3.5 animate-spin-hover" />
-          <span>⚙️ 週間簡易版</span>
+          <Calendar className="w-3.5 h-3.5" />
+          <span>📅 週間の暫定・表作成</span>
         </button>
       </div>
     </header>

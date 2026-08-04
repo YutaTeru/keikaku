@@ -110,7 +110,7 @@ export const RightTimeMeter: React.FC<RightTimeMeterProps> = ({ plan, onGoToStep
             onClick={onGoToStep7}
             className="text-[11px] text-sky-700 font-medium hover:underline flex items-center gap-0.5"
           >
-            ステップ7で確認 ➔
+            ステップ8で確認 ➔
           </button>
         </div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Calendar,
   User,
   Target,
   Clock,
@@ -18,14 +19,15 @@ export interface StepItem {
 }
 
 export const STEPS: StepItem[] = [
-  { id: 1, title: '1. 生徒情報', subtitle: '基本プロファイル', icon: <User className="w-4 h-4" /> },
-  { id: 2, title: '2. 目標と期限', subtitle: '志望校・偏差値・試練', icon: <Target className="w-4 h-4" /> },
-  { id: 3, title: '3. 学習可能時間', subtitle: '生活リズム・可処分時間', icon: <Clock className="w-4 h-4" /> },
-  { id: 4, title: '4. 教科・技能配分', subtitle: '英語技能別・他教科時間', icon: <PieChart className="w-4 h-4" /> },
-  { id: 5, title: '5. 教材と勉強法', subtitle: '参考書・手順ステップ', icon: <BookOpen className="w-4 h-4" /> },
-  { id: 6, title: '6. 環境・スマホ・AI', subtitle: '生活習慣・ルール・短縮版', icon: <Smartphone className="w-4 h-4" /> },
-  { id: 7, title: '7. 確認と警告', subtitle: '自動矛盾検証チェック', icon: <ShieldAlert className="w-4 h-4" /> },
-  { id: 8, title: '8. 注文表・AIプロンプト', subtitle: '出力＆ChatGPTプロンプト', icon: <FileCheck2 className="w-4 h-4" /> },
+  { id: 1, title: '1. 週間の暫定（学習計画・表作成）', subtitle: '暫定利用・目標＆時間・表作成', icon: <Calendar className="w-4 h-4 text-sky-500" /> },
+  { id: 2, title: '2. 生徒情報', subtitle: '基本プロファイル', icon: <User className="w-4 h-4" /> },
+  { id: 3, title: '3. 目標と期限', subtitle: '志望校・偏差値・試練', icon: <Target className="w-4 h-4" /> },
+  { id: 4, title: '4. 学習可能時間', subtitle: '生活リズム・可処分時間', icon: <Clock className="w-4 h-4" /> },
+  { id: 5, title: '5. 教科・技能配分', subtitle: '英語技能別・他教科時間', icon: <PieChart className="w-4 h-4" /> },
+  { id: 6, title: '6. 教材と勉強法', subtitle: '参考書・手順ステップ', icon: <BookOpen className="w-4 h-4" /> },
+  { id: 7, title: '7. 環境・スマホ・AI', subtitle: '生活習慣・ルール・短縮版', icon: <Smartphone className="w-4 h-4" /> },
+  { id: 8, title: '8. 確認と警告', subtitle: '自動矛盾検証チェック', icon: <ShieldAlert className="w-4 h-4" /> },
+  { id: 9, title: '9. 注文表・AIプロンプト', subtitle: '出力＆ChatGPTプロンプト', icon: <FileCheck2 className="w-4 h-4" /> },
 ];
 
 interface SidebarProps {
@@ -45,14 +47,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside className="w-full md:w-64 bg-slate-900 text-slate-300 border-r border-slate-800 flex flex-col shrink-0">
       <div className="p-3 border-b border-slate-800 text-xs font-semibold uppercase tracking-wider text-slate-400 flex justify-between items-center">
         <span>面談ステップ一覧</span>
-        <span className="text-[11px] text-sky-400 font-normal">全8ステップ</span>
+        <span className="text-[11px] text-sky-400 font-normal">全9ステップ</span>
       </div>
 
       {/* Nav steps */}
       <nav className="p-2 space-y-1 overflow-y-auto max-h-[220px] md:max-h-none flex-1">
         {STEPS.map((step) => {
           const isActive = currentStep === step.id;
-          const isStep7 = step.id === 7;
+          const isStep8 = step.id === 8;
 
           return (
             <button
@@ -84,8 +86,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
               </div>
 
-              {/* Badge for Step 7 */}
-              {isStep7 && (errorCount > 0 || warningCount > 0) && (
+              {/* Badge for Step 8 */}
+              {isStep8 && (errorCount > 0 || warningCount > 0) && (
                 <div className="flex items-center gap-1 shrink-0 ml-1">
                   {errorCount > 0 && (
                     <span className="bg-rose-500 text-white text-[10px] px-1.5 py-0.2 rounded font-bold">

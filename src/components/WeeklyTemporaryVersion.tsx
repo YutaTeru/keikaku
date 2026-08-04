@@ -21,7 +21,7 @@ import { PrescriptionPlan } from '../types';
 interface WeeklyTemporaryVersionProps {
   plan: PrescriptionPlan;
   onUpdatePlan: (updated: PrescriptionPlan) => void;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const dailyPresetsByDay = [
@@ -309,17 +309,19 @@ ${mindfulNotes ? `- 補足: ${mindfulNotes}` : ''}
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={() => {
-            updateParentPlan(weeklyGoal, dailyDurationHours, mindfulNotes, advanceNotices, mindfulDays);
-            onClose();
-          }}
-          className="bg-white hover:bg-slate-100 text-slate-900 text-xs font-bold px-4 py-2 rounded-lg transition shadow-sm shrink-0 flex items-center justify-center gap-1.5 self-start sm:self-center"
-        >
-          <ArrowLeft className="w-4 h-4 text-slate-600" />
-          <span>通常ステップに戻る</span>
-        </button>
+        {onClose && (
+          <button
+            type="button"
+            onClick={() => {
+              updateParentPlan(weeklyGoal, dailyDurationHours, mindfulNotes, advanceNotices, mindfulDays);
+              onClose();
+            }}
+            className="bg-white hover:bg-slate-100 text-slate-900 text-xs font-bold px-4 py-2 rounded-lg transition shadow-sm shrink-0 flex items-center justify-center gap-1.5 self-start sm:self-center"
+          >
+            <ArrowLeft className="w-4 h-4 text-slate-600" />
+            <span>通常ステップに戻る</span>
+          </button>
+        )}
       </div>
 
       {/* Input Control Center - hidden in print */}

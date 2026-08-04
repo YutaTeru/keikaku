@@ -198,7 +198,7 @@ export default function App() {
         onImportJson={handleImportJson}
         onResetConfirm={handleResetConfirm}
         isSavedNotification={isSavedNotification}
-        onOpenWeeklyTempModal={() => setIsWeeklyTempModalOpen(true)}
+        onOpenWeeklyTempModal={() => setCurrentStep(1)}
       />
 
       {/* Main Workspace (3-column layout) */}
@@ -214,35 +214,44 @@ export default function App() {
         {/* Center Column: Form Step Area */}
         <main className="flex-1 bg-white p-4 md:p-6 overflow-y-auto">
           <div className="max-w-4xl mx-auto">
-            {/* Always display the super-simplified, elegant Compact Weekly Plan on the top screen */}
-            <CompactWeeklyPlan
-              plan={plan}
-              onOpenSettings={() => setIsWeeklyTempModalOpen(true)}
-            />
+            {/* Display the super-simplified, elegant Compact Weekly Plan on the top screen for other steps */}
+            {currentStep > 1 && (
+              <CompactWeeklyPlan
+                plan={plan}
+                onOpenSettings={() => setCurrentStep(1)}
+              />
+            )}
 
             <>
               {currentStep === 1 && (
+                <WeeklyTemporaryVersion
+                  plan={plan}
+                  onUpdatePlan={(updated) => setPlan(updated)}
+                />
+              )}
+
+              {currentStep === 2 && (
                 <Step1StudentInfo
                   student={plan.student}
                   onChange={(updated) => setPlan({ ...plan, student: updated })}
                 />
               )}
 
-              {currentStep === 2 && (
+              {currentStep === 3 && (
                 <Step2GoalsDeadline
                   goals={plan.goals}
                   onChange={(updated) => setPlan({ ...plan, goals: updated })}
                 />
               )}
 
-              {currentStep === 3 && (
+              {currentStep === 4 && (
                 <Step3TimeAvailability
                   availability={plan.availability}
                   onChange={(updated) => setPlan({ ...plan, availability: updated })}
                 />
               )}
 
-              {currentStep === 4 && (
+              {currentStep === 5 && (
                 <Step4Allocations
                   englishAllocations={plan.englishAllocations}
                   otherAllocations={plan.otherSubjectAllocations}
@@ -254,7 +263,7 @@ export default function App() {
                 />
               )}
 
-              {currentStep === 5 && (
+              {currentStep === 6 && (
                 <Step5MaterialsMethods
                   materials={plan.materials}
                   studyMethods={plan.studyMethods}
@@ -264,36 +273,36 @@ export default function App() {
                 />
               )}
 
-              {currentStep === 6 && (
+              {currentStep === 7 && (
                 <Step6EnvironmentPhoneAI
                   environment={plan.environment}
                   onChange={(updated) => setPlan({ ...plan, environment: updated })}
                 />
               )}
 
-              {currentStep === 7 && (
+              {currentStep === 8 && (
                 <Step7Validation
                   plan={plan}
                   onUpdatePlan={(updated) => setPlan(updated)}
-                  onGoToOutputStep={() => setCurrentStep(8)}
+                  onGoToOutputStep={() => setCurrentStep(9)}
                 />
               )}
 
-              {currentStep === 8 && <Step8Output plan={plan} />}
+              {currentStep === 9 && <Step8Output plan={plan} />}
             </>
           </div>
         </main>
 
         {/* Right Column: Time Calculator & Validation Meter */}
-        <RightTimeMeter plan={plan} onGoToStep7={() => setCurrentStep(7)} />
+        <RightTimeMeter plan={plan} onGoToStep7={() => setCurrentStep(8)} />
       </div>
 
       {/* Fixed Bottom Navigation */}
       <BottomNav
         currentStep={currentStep}
-        totalSteps={8}
+        totalSteps={9}
         onPrev={() => setCurrentStep((prev) => Math.max(1, prev - 1))}
-        onNext={() => setCurrentStep((prev) => Math.min(8, prev + 1))}
+        onNext={() => setCurrentStep((prev) => Math.min(9, prev + 1))}
         onSave={triggerSaveNotification}
         isSavedNotification={isSavedNotification}
       />
